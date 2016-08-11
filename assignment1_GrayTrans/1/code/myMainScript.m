@@ -11,14 +11,12 @@ waitforbuttonpress;
 
 imshow(myShrinkImageByFactorD(im, 2));
 colormap(jet(200));
-daspect([1 1 1]);
 axis tight;
 colorbar
 waitforbuttonpress; 
 
 imshow(myShrinkImageByFactorD(im, 3));
 colormap(jet(200));
-daspect([1 1 1]);
 axis tight;
 colorbar
 waitforbuttonpress; 
