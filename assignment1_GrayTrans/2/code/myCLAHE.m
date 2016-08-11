@@ -1,9 +1,9 @@
-function newim = myAHE(im, m, n)
+function newim = myCLAHE(im, m, n, upper_cap)
 % Assumes n,m are odd
 assert(rem(m,2) == 1 && m>1);
 assert(rem(n,2) == 1 && n>1);
 
-disp('Started AHE')
+disp('Started CLAHE')
 
 digits(4);
 [M, N, K] = size(im);
@@ -30,7 +30,7 @@ for k = 1:K
             if (N-j>offsetN)
                 pdf = pdf + histcounts(im(i_start:i_end,j+offsetN,k),edges)';
             end
-            
+
             if ~(j-1>offsetN) && (N-j>offsetN)
                 pixels = pixels + (i_end-i_start+1);
             end
@@ -38,12 +38,23 @@ for k = 1:K
                 pixels = pixels - (i_end-i_start+1);
             end
 
-            temp_cdf = sum(pdf(1:(im(i,j,k)+1)));
-            newim(i,j,k) = round(temp_cdf/pixels*255);
+            cl_pdf = pdf;
+            excess = 0;
+            for intensity = 1:256
+                if cl_pdf(intensity) > upper_cap*pixels
+                    excess = excess + cl_pdf(intensity) - upper_cap*pixels;
+                    cl_pdf(intensity) = upper_cap*pixels;
+                end
+            end
+
+            excess_temp = excess*((im(i,j,k)+1)/256);
+            mera_sum = (sum(cl_pdf(1:(im(i,j,k)+1))));
+            temp_cdf = mera_sum + double(excess_temp);
+            newim(i,j,k) = round(temp_cdf*(255/pixels));
         end
     end
 end
 
-disp('Finished AHE')
+disp('Finished CLAHE')
 
 end

@@ -24,6 +24,7 @@ clear;
 % colorbar
 % waitforbuttonpress; 
 
+
 % im = imread('../data/TEM.png');
 % imshow(im);
 % colormap(jet(200));
@@ -37,16 +38,24 @@ clear;
 % colorbar
 % waitforbuttonpress;
 
+
 im = imread('../data/TEM.png');
 imshow(im);
-colormap(jet(200));
+% colormap(jet(200));
 axis tight;
 colorbar;
 waitforbuttonpress; 
-newim = myAHE(im, 1, 1);
+
+small_box = 51;
+
+tic;
+% newim = myAHE(im, small_box, small_box);
+newim = myCLAHE(im, small_box, small_box, 0.1);
+toc
+
 imshow(mat2gray(newim));
-colormap(jet(200));
+colormap(gray(200));
 axis tight;
 colorbar
 waitforbuttonpress;
-toc;
+
