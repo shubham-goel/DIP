@@ -3,59 +3,40 @@
 tic;
 %% Your code here
 
+tic;
 clc;
 clear;
-% im = imread('../data/TEM.png');
-% imshow(im);
-% colormap(jet(200));
-% axis tight;
-% colorbar;
-% waitforbuttonpress; 
-% newim = im;
-% size(newim,3)
-% for i = 1:size(newim,3)
-%    im1 = im2double(im(:,:,i));
-%    im1 = myLinearContrastStretching(im1);
-%    newim(:,:,i) = im1;
+
+a = dir('../data/');
+% for fname = 3:5
+%     im = imread(strcat('../data/', a(fname).name));
+% 	printImage(im)
+% 	printImage(myLinearContrastStretching(im));
 % end
-% imshow(newim);
-% colormap(jet(200));
-% axis tight;
-% colorbar
-% waitforbuttonpress; 
+% 
+% for fname = 3:5
+%     im = imread(strcat('../data/', a(fname).name));
+% 	printImage(im)
+% 	printImage(myHE(im));
+% end
 
+small_box = [120 120 200]; 
 
-% im = imread('../data/TEM.png');
-% imshow(im);
-% colormap(jet(200));
-% axis tight;
-% colorbar;
-% waitforbuttonpress; 
-% newim = myHE(im);
-% imshow(mat2gray(newim));
-% colormap(jet(200));
-% axis tight;
-% colorbar
-% waitforbuttonpress;
+for fname = 5:5
+    im = imread(strcat('../data/', a(fname).name));
+	printImage(im)
+	printImage(myAHE(im, small_box(fname-2), small_box(fname-2)));
+end
 
+% small_box = [100 100 180];    
+% threshold = [0.05 0.05 0.001];
+% 
+% for fname = 3:5
+%     im = imread(strcat('../data/', a(fname).name));
+% 	printImage(im)
+% 	printImage(myCLAHE(im, small_box(fname-2), small_box(fname-2), threshold(fname-2)));
+% end
 
-im = imread('../data/TEM.png');
-imshow(im);
-% colormap(jet(200));
-axis tight;
-colorbar;
-waitforbuttonpress; 
-
-small_box = 51;
-
-tic;
-% newim = myAHE(im, small_box, small_box);
-newim = myCLAHE(im, small_box, small_box, 0.1);
 toc
 
-imshow(mat2gray(newim));
-colormap(gray(200));
-axis tight;
-colorbar
-waitforbuttonpress;
 

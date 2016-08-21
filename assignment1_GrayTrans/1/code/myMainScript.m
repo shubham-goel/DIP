@@ -3,41 +3,17 @@
 tic;
 %% Your code here
 im = imread('../data/circles_concentric.png');
-imshow(im);
-colormap(jet(200));
-axis tight;
-colorbar;
-waitforbuttonpress; 
+printImage(im);
 
-imshow(myShrinkImageByFactorD(im, 2));
-colormap(jet(200));
-axis tight;
-colorbar
-waitforbuttonpress; 
+printImage(myShrinkImageByFactorD(im, 2));
 
-imshow(myShrinkImageByFactorD(im, 3));
-colormap(jet(200));
-axis tight;
-colorbar
-waitforbuttonpress; 
+printImage(myShrinkImageByFactorD(im, 3));
 
 im = imread('../data/barbaraSmall.png');
-imshow(im);
-colormap(jet(200));
-axis tight;
-colorbar;
-waitforbuttonpress; 
+printImage(im);
 
-imshow(mat2gray(myBilinearInterpolation(im)));
-colormap(jet(200));
-axis tight;
-colorbar;
-waitforbuttonpress; 
+printImage(myBilinearInterpolation(im));
 
-imshow(mat2gray(myNearestNeighborInterpolation(im)));
-colormap(jet(200));
-axis tight;
-colorbar;
-waitforbuttonpress; 
+printImage(myNearestNeighborInterpolation(im));
 
 toc;

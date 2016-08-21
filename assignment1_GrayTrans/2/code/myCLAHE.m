@@ -1,7 +1,11 @@
 function newim = myCLAHE(im, m, n, upper_cap)
 % Assumes n,m are odd
-assert(rem(m,2) == 1 && m>1);
-assert(rem(n,2) == 1 && n>1);
+if(rem(m,2) == 0)
+	m = m+1;
+end
+if(rem(n,2) == 0)
+	n = n+1;
+end
 
 disp('Started CLAHE')
 
