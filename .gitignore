@@ -1,1 +1,8 @@
 *~
+
+# Image/Data Files
+*.dat
+*.png
+*.bmp
+*.jpg
+*.jpeg
