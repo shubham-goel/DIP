@@ -10,5 +10,5 @@ end
 axis tight;
 axis on;
 colorbar;
-pause(5); 
+waitforbuttonpress;
 end
